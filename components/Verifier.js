@@ -109,7 +109,6 @@ export default function Verifier() {
 
   return (
     <main className="du-page">
-      <div className="global-status-label">INDEPENDENT WEBSITE · NOT AFFILIATED WITH THE UNIVERSITY OF DELHI</div>
       <header className="du-header">
         <img src="/assets/portal-mark.svg" alt="Independent results portal" />
         <div>
