@@ -23,7 +23,7 @@ const validPayload = {
   cgpa: "8.45",
   totalCredits: "44",
   resultDeclaredOn: "2026-07-20",
-  statementNumber: "demo-001",
+  statementNumber: "statement-001",
   remarks: "Promoted to the next semester",
   semesters: [{
     label: "Semester II",

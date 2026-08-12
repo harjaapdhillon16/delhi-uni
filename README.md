@@ -1,6 +1,6 @@
 # delhi-uni
 
-An independent, clearly labelled demonstration of a Delhi University-style semester results portal. It is not an
+An independent, clearly labelled Delhi University-style semester results portal. It is not an
 official University of Delhi service and does not issue valid academic documents.
 
 ## Features
@@ -10,7 +10,7 @@ official University of Delhi service and does not issue valid academic documents
 - PIN-protected administration at `/admin` (initial requested PIN: `1280`)
 - Plain inputs for candidate details, examination data, semester summaries, and every paper row
 - All project tables use the `delhi_uni_` prefix
-- A score-card-style HTML result with persistent **DEMO / NOT OFFICIAL** labelling
+- A score-card-style HTML result with persistent **NOT OFFICIAL** labelling
 - Browser-generated A4 PDF download; result PDFs are never uploaded to or stored in MySQL
 
 ## Local setup

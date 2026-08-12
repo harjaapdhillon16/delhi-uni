@@ -4,10 +4,10 @@ import "./globals.css";
 
 export const metadata = {
   title: {
-    default: "Delhi University Results Demo",
-    template: "%s · Delhi Results Demo",
+    default: "Delhi University Results Portal",
+    template: "%s · Delhi Results",
   },
-  description: "Independent demonstration of a structured semester result and score-card portal.",
+  description: "Independent structured semester result and score-card portal.",
   robots: {
     index: false,
     follow: false,

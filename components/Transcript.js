@@ -23,16 +23,16 @@ export default function Transcript({ result, documentRef }) {
 
   return (
     <article ref={documentRef} className="score-card">
-      <div className="score-demo-band">DEMONSTRATION ONLY · NOT AN OFFICIAL UNIVERSITY DOCUMENT</div>
+      <div className="score-status-band">NOT AN OFFICIAL UNIVERSITY DOCUMENT</div>
       <header className="score-letterhead">
         <img src="/assets/portal-mark.svg" alt="" />
         <div>
-          <h1>University of Delhi — Demo</h1>
+          <h1>University of Delhi</h1>
           <p>{result.examSession}</p>
         </div>
       </header>
       <h2 className="score-title">Statement of Marks/Grades</h2>
-      <p className="score-independent-note">Independent demonstration · Not issued or endorsed by the University of Delhi</p>
+      <p className="score-independent-note">Independent record · Not issued or endorsed by the University of Delhi</p>
 
       <section className="score-profile">
         <Detail label="Exam Roll No." value={result.examRollNumber} />
@@ -51,7 +51,7 @@ export default function Transcript({ result, documentRef }) {
           <tr key={`${course.paperCode}-${index}`}>
             <td>{index + 1}</td><td>{course.paperCode || "—"}</td><td>{course.appearingStatus || ""}</td><td>{course.paperName || "—"}</td><td>{course.paperType || "—"}</td><td>{course.semester}</td><td>{course.credits || "—"}</td><td>{course.grade || "—"}</td><td>{course.gradePoint || "—"}</td><td>{course.creditPoint || "—"}</td>
           </tr>
-        )) : <tr><td colSpan="10">No paper rows were entered for this demonstration record.</td></tr>}</tbody>
+        )) : <tr><td colSpan="10">No paper rows were entered for this record.</td></tr>}</tbody>
       </table>
 
       <table className="semester-summary-table">
@@ -65,23 +65,23 @@ export default function Transcript({ result, documentRef }) {
       {result.remarks && <p className="score-remarks"><strong>Remarks:</strong> {result.remarks}</p>}
       <section className="score-notes">
         <p><strong>Abbreviations:</strong> O: Outstanding; A+: Excellent; A: Very Good; B+: Good; B: Above Average; C: Average; D: Pass; F: Fail; AB: Absent; NA: Not Available; *: Old Awards; RA: Result Awaited.</p>
-        <p><strong>Note:</strong> This is a web-based demonstration of a Statement of Marks/Grades and is not valid for any official purpose.</p>
+        <p><strong>Note:</strong> This web-based Statement of Marks/Grades is not valid for any official purpose.</p>
         <p>A grade of F or AB indicates that the paper must be reattempted according to the applicable examination cycle.</p>
         <p>Final percentage calculations, if required, must follow the rules applicable to the actual programme and examination scheme.</p>
       </section>
       <section className="declaration-row">
         <span>Date of Result Declaration: {displayDate(result.resultDeclaredOn)}</span>
-        <b>Demo Statement No.: {result.statementNumber || result.examRollNumber}</b>
+        <b>Statement No.: {result.statementNumber || result.examRollNumber}</b>
       </section>
       <section className="score-disclaimer">
         <strong>Disclaimer:</strong>
-        <p>This record was created in an independent demonstration system and is subject to administrator correction.</p>
+        <p>This record was created in an independent system and is subject to administrator correction.</p>
         <p>It is not connected to the University of Delhi and must not be used as evidence of academic qualification.</p>
       </section>
-      <footer className="score-footer">COMPUTER-GENERATED DEMONSTRATION · NO SIGNATURE OR SEAL</footer>
-      <div className="score-watermark mark-one" aria-hidden="true">DEMO · NOT OFFICIAL</div>
-      <div className="score-watermark mark-two" aria-hidden="true">DEMO · NOT OFFICIAL</div>
-      <div className="score-watermark mark-three" aria-hidden="true">DEMO · NOT OFFICIAL</div>
+      <footer className="score-footer">COMPUTER-GENERATED RECORD · NO SIGNATURE OR SEAL</footer>
+      <div className="score-watermark mark-one" aria-hidden="true">NOT OFFICIAL</div>
+      <div className="score-watermark mark-two" aria-hidden="true">NOT OFFICIAL</div>
+      <div className="score-watermark mark-three" aria-hidden="true">NOT OFFICIAL</div>
     </article>
   );
 }

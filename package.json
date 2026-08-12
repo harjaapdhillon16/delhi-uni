@@ -1,8 +1,8 @@
 {
-  "name": "delhi-university-results-demo",
+  "name": "delhi-university-results",
   "version": "1.0.0",
   "private": true,
-  "description": "Next.js Delhi-style semester result demonstration backed by MySQL.",
+  "description": "Next.js Delhi-style semester result portal backed by MySQL.",
   "type": "module",
   "scripts": {
     "dev": "next dev",

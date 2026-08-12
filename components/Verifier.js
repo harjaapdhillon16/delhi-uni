@@ -99,7 +99,7 @@ export default function Verifier() {
         if (page) pdf.addPage();
         pdf.addImage(image, "JPEG", 0, -(page * pageHeight), pageWidth, imageHeight, undefined, "FAST");
       }
-      pdf.save(`${result.examRollNumber}-DEMO-score-card.pdf`);
+      pdf.save(`${result.examRollNumber}-score-card.pdf`);
     } catch {
       setError("The PDF could not be generated. Use your browser's Print option instead.");
     } finally {
@@ -109,11 +109,11 @@ export default function Verifier() {
 
   return (
     <main className="du-page">
-      <div className="global-demo-label">DEMO WEBSITE · NOT AFFILIATED WITH THE UNIVERSITY OF DELHI</div>
+      <div className="global-status-label">INDEPENDENT WEBSITE · NOT AFFILIATED WITH THE UNIVERSITY OF DELHI</div>
       <header className="du-header">
-        <img src="/assets/portal-mark.svg" alt="Independent results demo" />
+        <img src="/assets/portal-mark.svg" alt="Independent results portal" />
         <div>
-          <h1>Delhi University Results Demo</h1>
+          <h1>Delhi University Results Portal</h1>
           <p>Manual Results (Semester/Annual Examination)</p>
         </div>
       </header>
@@ -128,7 +128,7 @@ export default function Verifier() {
         <h2>Semester/Annual Examination Results</h2>
         <h3>Statement of Marks/Score Card</h3>
         <div className="du-blue-line" />
-        <p className="du-notice">Students are advised to save their Statement of Marks/Score Card for future purpose.<br />This demonstration link may not be available later.</p>
+        <p className="du-notice">Students are advised to save their Statement of Marks/Score Card for future purpose.<br />This result link may not be available later.</p>
         <div className="du-blue-line" />
 
         {!result ? (
@@ -165,7 +165,7 @@ export default function Verifier() {
         ) : (
           <section className="result-view">
             <div className="result-actions">
-              <button type="button" onClick={downloadPdf} disabled={downloading}>{downloading ? "Generating PDF…" : "Download demo PDF"}</button>
+              <button type="button" onClick={downloadPdf} disabled={downloading}>{downloading ? "Generating PDF…" : "Download PDF"}</button>
               <button type="button" onClick={reset}>Search another result</button>
             </div>
             {error && <p className="du-error" role="alert">{error}</p>}
@@ -175,13 +175,13 @@ export default function Verifier() {
 
         {!result && <p className="mandatory-note">* : Mandatory Fields</p>}
         <div className="portal-notes">
-          <p><strong>Demo notice:</strong> This is an independent portfolio demonstration. It is not the University of Delhi website and cannot issue valid academic records.</p>
-          <p><strong>Privacy:</strong> Lookup details are used only to find an administrator-created demonstration record.</p>
+          <p><strong>Important notice:</strong> This is an independent portfolio project. It is not the University of Delhi website and cannot issue valid academic records.</p>
+          <p><strong>Privacy:</strong> Lookup details are used only to find an administrator-created record.</p>
         </div>
       </section>
 
       <footer className="du-footer">
-        Delhi University Results Demo (Independent, non-official project)
+        Delhi University Results Portal (Independent, non-official project)
       </footer>
     </main>
   );

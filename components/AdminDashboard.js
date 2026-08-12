@@ -69,7 +69,7 @@ function Login({ onAuthenticated }) {
         <Link href="/">← Public result search</Link>
         <div>
           <img src="/assets/portal-mark.svg" alt="" />
-          <span>INDEPENDENT DEMO PORTAL</span>
+          <span>INDEPENDENT RESULTS PORTAL</span>
           <h1>Delhi result records administration.</h1>
           <p>Create the candidate, semester, paper, credit, and grade data used to render the two-page HTML marks statement.</p>
         </div>
@@ -291,22 +291,22 @@ export default function AdminDashboard() {
   return (
     <main className="admin-dashboard">
       <aside className="admin-sidebar">
-        <Link href="/"><img src="/assets/portal-mark.svg" alt="" /><b>DU RESULTS<br />DEMO ADMIN</b></Link>
+        <Link href="/"><img src="/assets/portal-mark.svg" alt="" /><b>DU RESULTS<br />ADMIN</b></Link>
         <nav><button className="active" type="button">Result records <em>{results.length}</em></button><Link href="/" target="_blank">Public search ↗</Link></nav>
         <button type="button" onClick={async () => { await fetch("/api/admin/logout", { method: "POST" }); setAuthenticated(false); }}>Sign out</button>
       </aside>
       <section className="admin-content">
-        <header className="admin-page-header"><div><span className="admin-kicker">DEMO RECORDS MANAGEMENT</span><h1>Exam results</h1></div><button className="primary-button" type="button" onClick={() => setEditor(null)}>+ Add result</button></header>
+        <header className="admin-page-header"><div><span className="admin-kicker">RECORDS MANAGEMENT</span><h1>Exam results</h1></div><button className="primary-button" type="button" onClick={() => setEditor(null)}>+ Add result</button></header>
         <section className="admin-metrics">
           <article><span>Total records</span><strong>{results.length}</strong><p>Stored in delhi_uni_results</p></article>
           <article><span>Semester summaries</span><strong>{semesterCount}</strong><p>Across all result records</p></article>
           <article><span>Last updated</span><strong>{results[0]?.updatedAt ? new Date(results[0].updatedAt).toLocaleDateString("en-IN") : "—"}</strong><p>Most recent record change</p></article>
         </section>
         <section className="admin-records">
-          <header><div><h2>All result records</h2><p>Plain fields render into HTML and on-demand demo PDFs.</p></div><input type="search" placeholder="Search name, roll, enrollment or college…" value={search} onChange={(event) => setSearch(event.target.value)} /></header>
+          <header><div><h2>All result records</h2><p>Plain fields render into HTML and on-demand PDFs.</p></div><input type="search" placeholder="Search name, roll, enrollment or college…" value={search} onChange={(event) => setSearch(event.target.value)} /></header>
           {message && <p className="admin-message">{message}</p>}
           {loading ? <div className="records-empty">Loading records…</div> : !results.length ? (
-            <div className="records-empty"><strong>No Delhi demo results yet</strong><p>Create the first structured score-card record.</p><button className="primary-button" type="button" onClick={() => setEditor(null)}>Add first result</button></div>
+            <div className="records-empty"><strong>No Delhi results yet</strong><p>Create the first structured score-card record.</p><button className="primary-button" type="button" onClick={() => setEditor(null)}>Add first result</button></div>
           ) : (
             <div className="records-table-wrap"><table><thead><tr><th>Candidate</th><th>Exam roll</th><th>College</th><th>Session</th><th>Semesters</th><th /></tr></thead><tbody>{results.map((record) => (
               <tr key={record.id}><td><strong>{record.studentName}</strong><small>{record.programme}</small></td><td className="mono">{record.examRollNumber}</td><td>{record.college}</td><td>{record.examSession}</td><td>{record.semesters.length}</td><td><div className="record-actions"><button type="button" onClick={() => setEditor(record)}>Edit</button><button type="button" onClick={() => setDeleteRecord(record)}>Delete</button></div></td></tr>

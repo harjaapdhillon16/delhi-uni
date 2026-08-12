@@ -15,7 +15,7 @@ a { color: inherit; text-decoration: none; }
 button { cursor: pointer; }
 button:disabled { cursor: wait; opacity: .65; }
 
-.global-demo-label {
+.global-status-label {
   padding: 8px 16px;
   color: #fff;
   background: #b20e23;
@@ -94,7 +94,7 @@ button:disabled { cursor: wait; opacity: .65; }
   border: 1px solid #555;
   font-family: "Times New Roman", Times, serif;
 }
-.score-demo-band { margin: -28px -34px 20px; padding: 7px; color: #fff; background: #b20e23; font-family: Arial, sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-align: center; }
+.score-status-band { margin: -28px -34px 20px; padding: 7px; color: #fff; background: #b20e23; font-family: Arial, sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-align: center; }
 .score-letterhead { min-height: 105px; display: grid; grid-template-columns: 105px 1fr; align-items: center; gap: 15px; color: #9b1826; border-bottom: 3px solid #4769ad; }
 .score-letterhead > img { width: 88px; height: 88px; object-fit: contain; }
 .score-letterhead > div:nth-child(2) { text-align: center; }
@@ -256,7 +256,7 @@ button:disabled { cursor: wait; opacity: .65; }
 }
 
 @media print {
-  .global-demo-label, .du-header, .du-nav, .du-content > h2, .du-content > h3, .du-blue-line, .du-notice, .result-actions, .portal-notes, .du-footer { display: none !important; }
+  .global-status-label, .du-header, .du-nav, .du-content > h2, .du-content > h3, .du-blue-line, .du-notice, .result-actions, .portal-notes, .du-footer { display: none !important; }
   .du-content, .result-view, .score-card-scroll { width: auto; padding: 0; margin: 0; overflow: visible; }
   .score-card { border: 0; transform-origin: top left; }
 }
