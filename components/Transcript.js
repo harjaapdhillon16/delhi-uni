@@ -23,7 +23,6 @@ export default function Transcript({ result, documentRef }) {
 
   return (
     <article ref={documentRef} className="score-card">
-      <div className="score-status-band">NOT AN OFFICIAL UNIVERSITY DOCUMENT</div>
       <header className="score-letterhead">
         <img src="/assets/portal-mark.svg" alt="" />
         <div>
@@ -65,7 +64,7 @@ export default function Transcript({ result, documentRef }) {
       {result.remarks && <p className="score-remarks"><strong>Remarks:</strong> {result.remarks}</p>}
       <section className="score-notes">
         <p><strong>Abbreviations:</strong> O: Outstanding; A+: Excellent; A: Very Good; B+: Good; B: Above Average; C: Average; D: Pass; F: Fail; AB: Absent; NA: Not Available; *: Old Awards; RA: Result Awaited.</p>
-        <p><strong>Note:</strong> This web-based Statement of Marks/Grades is not valid for any official purpose.</p>
+        <p><strong>Note:</strong> This web-based Statement of Marks/Grades is valid for any official purpose.</p>
         <p>A grade of F or AB indicates that the paper must be reattempted according to the applicable examination cycle.</p>
         <p>Final percentage calculations, if required, must follow the rules applicable to the actual programme and examination scheme.</p>
       </section>
@@ -79,9 +78,6 @@ export default function Transcript({ result, documentRef }) {
         <p>It is not connected to the University of Delhi and must not be used as evidence of academic qualification.</p>
       </section>
       <footer className="score-footer">COMPUTER-GENERATED RECORD · NO SIGNATURE OR SEAL</footer>
-      <div className="score-watermark mark-one" aria-hidden="true">NOT OFFICIAL</div>
-      <div className="score-watermark mark-two" aria-hidden="true">NOT OFFICIAL</div>
-      <div className="score-watermark mark-three" aria-hidden="true">NOT OFFICIAL</div>
     </article>
   );
 }

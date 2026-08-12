@@ -174,14 +174,10 @@ export default function Verifier() {
         )}
 
         {!result && <p className="mandatory-note">* : Mandatory Fields</p>}
-        <div className="portal-notes">
-          <p><strong>Important notice:</strong> This is an independent portfolio project. It is not the University of Delhi website and cannot issue valid academic records.</p>
-          <p><strong>Privacy:</strong> Lookup details are used only to find an administrator-created record.</p>
-        </div>
       </section>
 
       <footer className="du-footer">
-        Delhi University Results Portal (Independent, non-official project)
+        Delhi University Results Portal
       </footer>
     </main>
   );
