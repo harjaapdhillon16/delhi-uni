@@ -1,7 +1,6 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
 import { useRef, useState } from "react";
 import Transcript from "./Transcript";
 
@@ -110,17 +109,16 @@ export default function Verifier() {
   return (
     <main className="du-page">
       <header className="du-header">
-        <img src="/assets/portal-mark.svg" alt="Independent results portal" />
+        <img src="https://durslt.du.ac.in/AC_INTERNET_Marksheet_NDB/Images/DU_Logo.JPG" alt="University of Delhi emblem" />
         <div>
-          <h1>Delhi University Results Portal</h1>
-          <p>Manual Results (Semester/Annual Examination)</p>
+          <h1>University of Delhi</h1>
+          <p>(Examination Branch - PhD Thesis Evaluation System)</p>
         </div>
       </header>
       <nav className="du-nav" aria-label="Portal navigation">
         <a href="#result-form">Home</a><i />
         <a href="#result-form">Statement of Marks</a><i />
         <span>List of Declared Result</span>
-        <Link href="/admin">Admin</Link>
       </nav>
 
       <section className="du-content" id="result-form">
