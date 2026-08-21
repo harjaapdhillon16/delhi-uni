@@ -1,8 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { useRef, useState } from "react";
-import Transcript from "./Transcript";
+import { useState } from "react";
 
 const colleges = [
   "Acharya Narendra Dev College",
@@ -34,8 +33,6 @@ export default function Verifier() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [downloading, setDownloading] = useState(false);
-  const transcriptRef = useRef(null);
 
   function field(event) {
     setForm((current) => ({ ...current, [event.target.name]: event.target.value }));
@@ -75,35 +72,6 @@ export default function Verifier() {
     setCaptcha(captchaValue());
     setResult(null);
     setError("");
-  }
-
-  async function downloadPdf() {
-    if (!transcriptRef.current || !result) return;
-    setDownloading(true);
-    try {
-      const [{ default: html2canvas }, { jsPDF }] = await Promise.all([import("html2canvas"), import("jspdf")]);
-      const canvas = await html2canvas(transcriptRef.current, {
-        backgroundColor: "#ffffff",
-        scale: 2,
-        useCORS: true,
-        logging: false,
-      });
-      const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4", compress: true });
-      const pageWidth = 210;
-      const pageHeight = 297;
-      const imageHeight = (canvas.height * pageWidth) / canvas.width;
-      const pages = Math.ceil((imageHeight - 0.5) / pageHeight);
-      const image = canvas.toDataURL("image/jpeg", 0.94);
-      for (let page = 0; page < pages; page += 1) {
-        if (page) pdf.addPage();
-        pdf.addImage(image, "JPEG", 0, -(page * pageHeight), pageWidth, imageHeight, undefined, "FAST");
-      }
-      pdf.save(`${result.examRollNumber}-score-card.pdf`);
-    } catch {
-      setError("The PDF could not be generated. Use your browser's Print option instead.");
-    } finally {
-      setDownloading(false);
-    }
   }
 
   return (
@@ -161,12 +129,25 @@ export default function Verifier() {
           </form>
         ) : (
           <section className="result-view">
+            <div className="result-summary">
+              <strong>{result.studentName}</strong>
+              <span>
+                {result.college} &middot; Exam Roll {result.examRollNumber}
+                {result.examSession ? ` · ${result.examSession}` : ""}
+              </span>
+            </div>
             <div className="result-actions">
-              <button type="button" onClick={downloadPdf} disabled={downloading}>{downloading ? "Generating PDF…" : "Download PDF"}</button>
+              <a className="du-download" href={`${result.pdfUrl}&download=1`}>Download PDF</a>
               <button type="button" onClick={reset}>Search another result</button>
             </div>
             {error && <p className="du-error" role="alert">{error}</p>}
-            <div className="score-card-scroll"><Transcript result={result} documentRef={transcriptRef} /></div>
+            <div className="pdf-stage">
+              <iframe title={`Score card for ${result.studentName}`} src={result.pdfUrl} />
+              <p className="pdf-fallback">
+                Cannot see the score card?{" "}
+                <a href={result.pdfUrl} target="_blank" rel="noreferrer">Open the PDF in a new tab</a>.
+              </p>
+            </div>
           </section>
         )}
 
