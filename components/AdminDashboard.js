@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { collegeOptions } from "@/lib/colleges";
 
 const emptyResult = {
   college: "",
@@ -16,23 +17,6 @@ const emptyResult = {
   examSession: "",
   resultDeclaredOn: "",
 };
-
-const colleges = [
-  "Acharya Narendra Dev College",
-  "Atma Ram Sanatan Dharma College",
-  "Daulat Ram College",
-  "Delhi College of Arts and Commerce",
-  "Gargi College",
-  "Hansraj College",
-  "Hindu College",
-  "Kirori Mal College",
-  "Miranda House",
-  "Ramjas College",
-  "Shri Ram College of Commerce",
-  "Sri Venkateswara College",
-  "St. Stephen's College",
-  "Zakir Husain Delhi College",
-];
 
 async function api(url, options = {}) {
   const response = await fetch(url, options);
@@ -173,8 +157,15 @@ function Editor({ record, onClose, onSaved }) {
             <div className="editor-grid">
               <label className="full-field">
                 <span>College/department *</span>
-                <input name="college" list="admin-college-list" value={form.college} onChange={field} required />
-                <datalist id="admin-college-list">{colleges.map((college) => <option key={college} value={college} />)}</datalist>
+                <select name="college" value={form.college} onChange={field} required>
+                  <option value="">Select a college or department</option>
+                  {record?.college && !collegeOptions.some((college) => college.name === record.college) && (
+                    <option value={record.college}>{record.college}</option>
+                  )}
+                  {collegeOptions.map((college) => (
+                    <option key={college.code} value={college.name}>{college.name}</option>
+                  ))}
+                </select>
               </label>
               <TextField label="Exam roll number" name="examRollNumber" form={form} onChange={field} required />
               <TextField label="Student name" name="studentName" form={form} onChange={field} required />

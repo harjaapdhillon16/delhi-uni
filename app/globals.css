@@ -25,67 +25,125 @@ button:disabled { cursor: wait; opacity: .65; }
   text-align: center;
 }
 
-.du-page { min-height: 100vh; background: #fff; }
+.du-page {
+  min-width: 1030px;
+  min-height: 100vh;
+  padding: 2px 3px 0;
+  background: #fff url("https://durslt.du.ac.in/AC_INTERNET_Marksheet_NDB/Images/background.png") repeat;
+  font-family: Verdana, Arial, sans-serif;
+}
 .du-header {
-  height: 124px;
-  padding: 0 2px 0 21px;
-  display: flex;
-  align-items: center;
-  color: #000;
-  background: #fff;
-  border-top: 3px solid #3d3d3d;
-  border-left: 1px solid #000;
+  width: 100%;
+  height: 105px;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  color: #fff;
+  background: #5b5ede;
 }
-.du-header img { width: 101px; height: 100px; object-fit: contain; transform: translateY(3px); }
-.du-header div { flex: 1; text-align: center; transform: translateY(5px); }
-.du-header h1 { margin: 0; font-family: "Times New Roman", Times, serif; font-size: 32px; font-weight: 400; line-height: 1.05; }
-.du-header p { margin: 1px 0 0; font-family: "Times New Roman", Times, serif; font-size: 16px; font-weight: 400; }
+.du-logo-cell { display: grid; place-items: center; }
+.du-header img { width: 101px; height: 101px; display: block; object-fit: contain; }
+.du-heading-cell { padding-right: 10%; display: grid; align-content: center; justify-items: center; }
+.du-header h1 { margin: 0; font-size: 32px; font-weight: 700; line-height: 1.2; }
+.du-header p { margin: 3px 0 0; font-size: 18px; font-weight: 700; line-height: 1.2; }
 .du-nav {
-  min-height: 45px;
-  padding: 7px 6vw;
+  width: 100%;
+  height: 39px;
+  padding-left: 17px;
   display: flex;
   align-items: center;
-  gap: 14px;
-  color: #766b54;
-  background: var(--du-cream);
-  border-bottom: 1px solid #e5d3a5;
-  font-family: Verdana, sans-serif;
-  font-size: 16px;
+  color: #7c6f57;
+  background: #fff1cc;
+  border: 2px solid #5b5ede;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 14px;
+  overflow: hidden;
 }
-.du-nav i { width: 1px; height: 24px; background: #d4c7a6; }
-.du-nav a:hover { text-decoration: underline; }
-.du-nav a:last-child { margin-left: auto; font-size: 12px; }
+.du-nav a { height: 31px; padding: 7px 7px 0; display: block; white-space: nowrap; }
+.du-nav a:hover { color: #f60; }
+.du-nav-divider {
+  width: 13px;
+  height: 31px;
+  flex: 0 0 13px;
+  background: linear-gradient(90deg, #fff7e1 0, #dbd0a9 38%, #8e805d 72%, #fff8df 100%);
+}
+.du-nav-first { border-radius: 8px 0 0 8px; }
+.du-nav-last { border-radius: 0 8px 8px 0; }
 
-.du-content { width: min(1000px, calc(100% - 32px)); min-height: 650px; margin: 0 auto; padding: 25px 0 45px; }
-.du-content h2, .du-content h3 { margin: 0; color: #222; font-family: Georgia, serif; text-align: center; }
-.du-content h2 { font-size: 23px; }
-.du-content h3 { margin-top: 8px; font-size: 19px; }
-.du-blue-line { width: 80%; height: 4px; margin: 15px auto; background: linear-gradient(90deg, transparent, #4866d2 10%, #4866d2 90%, transparent); }
-.du-notice { margin: 12px 0; color: #c00088; font-family: Verdana, sans-serif; font-size: 13px; line-height: 1.6; text-align: center; }
+.du-content { width: 1000px; min-height: 488px; margin: 0 auto; padding: 13px 0 7px; }
+.du-content h2, .du-content h3 { margin: 0; color: maroon; font-family: Verdana, Arial, sans-serif; font-weight: 700; text-align: center; }
+.du-content h2 { font-size: 22px; line-height: 27px; }
+.du-content h3 { font-size: 18px; line-height: 23px; }
+.du-blue-line {
+  width: 630px;
+  height: 3px;
+  margin: 1px auto 3px;
+  background: url("https://durslt.du.ac.in/AC_INTERNET_Marksheet_NDB/Images/BlueLine.JPG") center / 630px 2px no-repeat;
+}
+.du-notice { margin: 0; color: #c09; font-size: 15px; font-weight: 700; line-height: 18px; text-align: center; }
 
-.du-form { width: min(760px, 100%); margin: 28px auto 12px; display: grid; grid-template-columns: 280px minmax(0, 1fr); align-items: center; gap: 13px 24px; }
-.du-form > label { font-family: Verdana, sans-serif; font-size: 13px; }
-.du-form > label b { color: #f30; }
-.du-form > input { width: 100%; min-height: 34px; padding: 6px 9px; border: 1px solid #777; border-radius: 2px; background: #fff; }
-.du-form input:focus { outline: 2px solid rgba(64, 86, 214, .25); border-color: #4056d6; }
-.du-captcha-field { display: grid; grid-template-columns: 118px 64px 1fr; align-items: center; gap: 8px; }
-.du-captcha-field strong { padding: 8px 12px; color: #171c5a; background: repeating-linear-gradient(165deg, #edf0ff, #edf0ff 4px, #d4daf8 5px); border: 1px solid #7e86bd; font-family: Georgia, serif; font-size: 20px; font-style: italic; letter-spacing: 4px; text-decoration: line-through; }
-.du-captcha-field button { padding: 0; color: #2b44ae; background: transparent; border: 0; font-size: 11px; text-decoration: underline; }
-.du-captcha-field input { min-width: 0; height: 34px; padding: 6px 9px; border: 1px solid #777; }
-.du-error { padding: 10px 12px; margin: 0; grid-column: 1 / -1; color: #8e1021; background: #fff0f2; border: 1px solid #eeb1ba; font-size: 13px; text-align: center; }
-.du-form-actions { grid-column: 2; display: flex; gap: 8px; }
-.du-form-actions button, .result-actions button { padding: 7px 14px; color: #fff; background: #4a4bb5; border: 1px solid #34358d; border-radius: 2px; font-size: 13px; }
-.du-form-actions button:last-child, .result-actions button:last-child { color: #222; background: #eee; border-color: #999; }
-.mandatory-note { width: min(760px, 100%); margin: 12px auto; color: #555; font-size: 12px; }
-.portal-notes { margin-top: 35px; padding: 15px 20px; background: #fafafa; border-top: 1px solid #bbb; font-family: Verdana, sans-serif; font-size: 11px; line-height: 1.5; }
-.du-footer { padding: 14px 20px; color: #fff; background: #575ad0; font-family: Verdana, sans-serif; font-size: 11px; text-align: center; }
+.du-form {
+  width: 795px;
+  margin: 27px 0 0;
+  display: grid;
+  grid-template-columns: 385px 410px;
+  align-items: center;
+  row-gap: 3px;
+}
+.du-form > label { font-size: 15px; font-weight: 700; line-height: 22px; }
+.du-form > label b, .mandatory-note b { color: #f30; }
+.du-form > input, .du-form > select, .du-date-fields select {
+  height: 22px;
+  padding: 0 4px;
+  color: maroon;
+  background: #fff;
+  border: 1px solid #1f6367;
+  border-radius: 0;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+.du-form > select { width: 400px; }
+.du-form > input { width: 305px; }
+.du-form input:focus, .du-form select:focus { outline: 1px solid #1f6367; outline-offset: 0; }
+.du-date-fields { width: 350px; display: flex; align-items: center; gap: 7px; }
+.du-date-fields label { font-size: 15px; font-weight: 700; }
+.du-date-fields select { width: 60px; }
+.du-date-fields select:last-child { width: 70px; }
+.du-error { width: 795px; padding: 5px 8px; margin: 3px 0; grid-column: 1 / -1; color: #8e1021; background: #fff0f2; border: 1px solid #eeb1ba; font-size: 12px; text-align: center; }
+.du-form-actions { height: 37px; grid-column: 1 / -1; display: flex; align-items: flex-end; justify-content: center; }
+.du-form-actions button, .result-actions button {
+  height: 30px;
+  padding: 0 7px;
+  color: #fff;
+  background: #1f6367;
+  border-top: 1px solid #3472b4;
+  border-right: 2px solid #022d5c;
+  border-bottom: 2px solid #022d5c;
+  border-left: 1px solid #3472b4;
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+.du-information { margin-top: 24px; font-size: 14px; }
+.du-information p { margin: 0 0 21px; line-height: 17px; }
+.du-information .mandatory-note { margin-bottom: 11px; font-size: 12px; font-weight: 400; }
+.du-information .mandatory-note b { font-size: 15px; }
+.du-information strong { color: #c30; font-size: 15px; }
+.du-information p:not(.mandatory-note) b { color: #06f; font-size: 15px; }
+.du-information p:nth-of-type(3) { width: 820px; margin-bottom: 4px; }
+.du-lower-line { width: 630px; height: 2px; margin-left: 0; background: #168cff; }
+.du-focus-button { width: 28px; height: 14px; padding: 0; margin-top: 4px; background: #fff; border: 1px solid #888; border-radius: 3px; }
+.du-footer { height: 60px; color: #f7f6f3; background: #5b5ede; font-size: 14px; font-weight: 700; text-align: center; }
+.du-footer p { height: 21px; margin: 0; display: grid; place-items: center; }
+.du-footer p:nth-child(2) { height: 19px; color: #06f; background: #fc9; }
+.du-footer div { height: 20px; }
 
 .result-view { margin-top: 24px; }
 .result-summary { padding: 12px 16px; margin-bottom: 14px; background: #f6f7ff; border: 1px solid #ccd2f2; text-align: center; }
 .result-summary strong { display: block; font-family: Georgia, serif; font-size: 19px; }
 .result-summary span { color: #555; font-family: Verdana, sans-serif; font-size: 12px; }
 .result-actions { margin-bottom: 18px; display: flex; justify-content: center; gap: 10px; }
-.du-download { padding: 7px 14px; color: #fff; background: #4a4bb5; border: 1px solid #34358d; border-radius: 2px; font-size: 13px; }
+.du-download { padding: 7px 14px; color: #fff; background: #1f6367; border: 1px solid #022d5c; border-radius: 2px; font-size: 13px; }
 .pdf-stage { padding: 14px; background: #e7e9f4; border: 1px solid #c3c8e2; }
 .pdf-stage iframe { width: 100%; height: min(1200px, 128vh); display: block; background: #fff; border: 1px solid #a9afd0; }
 .pdf-fallback { margin: 12px 0 0; color: #555; font-family: Verdana, sans-serif; font-size: 12px; text-align: center; }
