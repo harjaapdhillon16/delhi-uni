@@ -42,7 +42,7 @@ button:disabled { cursor: wait; opacity: .65; }
 }
 .du-logo-cell { display: grid; place-items: center; }
 .du-header img { width: 101px; height: 101px; display: block; object-fit: contain; }
-.du-heading-cell { padding-right: 10%; display: grid; align-content: center; justify-items: center; }
+.du-heading-cell { display: grid; align-content: center; justify-items: center; }
 .du-header h1 { margin: 0; font-size: 32px; font-weight: 700; line-height: 1.2; }
 .du-header p { margin: 3px 0 0; font-size: 18px; font-weight: 700; line-height: 1.2; }
 .du-nav {
@@ -69,7 +69,7 @@ button:disabled { cursor: wait; opacity: .65; }
 .du-nav-first { border-radius: 8px 0 0 8px; }
 .du-nav-last { border-radius: 0 8px 8px 0; }
 
-.du-content { width: 1000px; min-height: 488px; margin: 0 auto; padding: 13px 0 7px; }
+.du-content { width: 1000px; min-height: 493px; margin: 0 auto; padding: 13px 0 7px; }
 .du-content h2, .du-content h3 { margin: 0; color: maroon; font-family: Verdana, Arial, sans-serif; font-weight: 700; text-align: center; }
 .du-content h2 { font-size: 22px; line-height: 27px; }
 .du-content h3 { font-size: 18px; line-height: 23px; }
@@ -83,7 +83,7 @@ button:disabled { cursor: wait; opacity: .65; }
 
 .du-form {
   width: 795px;
-  margin: 27px 0 0;
+  margin: 32px 0 0 3px;
   display: grid;
   grid-template-columns: 385px 410px;
   align-items: center;
@@ -110,7 +110,7 @@ button:disabled { cursor: wait; opacity: .65; }
 .du-date-fields select { width: 60px; }
 .du-date-fields select:last-child { width: 70px; }
 .du-error { width: 795px; padding: 5px 8px; margin: 3px 0; grid-column: 1 / -1; color: #8e1021; background: #fff0f2; border: 1px solid #eeb1ba; font-size: 12px; text-align: center; }
-.du-form-actions { height: 37px; grid-column: 1 / -1; display: flex; align-items: flex-end; justify-content: center; }
+.du-form-actions { width: 994px; height: 41px; grid-column: 1 / -1; display: flex; align-items: flex-end; justify-content: center; }
 .du-form-actions button, .result-actions button {
   height: 30px;
   padding: 0 7px;
@@ -124,7 +124,7 @@ button:disabled { cursor: wait; opacity: .65; }
   font-size: 14px;
   font-weight: 700;
 }
-.du-information { margin-top: 24px; font-size: 14px; }
+.du-information { margin: 24px 0 0 3px; font-size: 14px; }
 .du-information p { margin: 0 0 21px; line-height: 17px; }
 .du-information .mandatory-note { margin-bottom: 11px; font-size: 12px; font-weight: 400; }
 .du-information .mandatory-note b { font-size: 15px; }
@@ -233,15 +233,6 @@ button:disabled { cursor: wait; opacity: .65; }
 .confirm-overlay section div { margin-top: 20px; display: flex; justify-content: center; gap: 9px; }
 
 @media (max-width: 800px) {
-  .du-header { height: 92px; padding: 0 14px; gap: 12px; }
-  .du-header img { width: 62px; height: 62px; }
-  .du-header h1 { font-size: 25px; }
-  .du-header p { font-size: 13px; }
-  .du-nav { padding: 8px 12px; gap: 8px; font-size: 11px; overflow-x: auto; }
-  .du-content { width: calc(100% - 20px); }
-  .du-form { grid-template-columns: 1fr; gap: 6px; }
-  .du-form > input, .du-captcha-field { margin-bottom: 10px; }
-  .du-form-actions { grid-column: 1; }
   .admin-login { grid-template-columns: 1fr; }
   .admin-login-brand { min-height: 42vh; padding: 30px; }
   .admin-login-brand h1 { font-size: 40px; }
