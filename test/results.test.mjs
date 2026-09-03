@@ -4,55 +4,62 @@ import {
   normalizeEmail,
   normalizeIdentifier,
   publicLookupPayload,
+  resultPdfFromForm,
   validateResultPayload,
 } from "../lib/results.js";
 
 const validPayload = {
   college: "Ramjas College",
   examRollNumber: " 2401 1001 ",
-  enrollmentNumber: "du-2023-001",
   studentName: "Aarav Sharma",
   email: " AARAV@example.com ",
   dateOfBirth: "2004-02-17",
+  enrollmentNumber: "du-2023-001",
   programme: "Bachelor of Commerce (Honours)",
   currentSemester: "VI",
-  fatherName: "Rakesh Sharma",
-  motherName: "Meena Sharma",
   examSession: "Semester Examination May-June 2026",
-  resultStatus: "Pass",
-  cgpa: "8.45",
-  totalCredits: "44",
   resultDeclaredOn: "2026-07-20",
-  statementNumber: "statement-001",
-  remarks: "Promoted to the next semester",
-  semesters: [{
-    label: "Semester II",
-    sgpa: "8.45",
-    totalCredit: "22",
-    totalCreditPoint: "186",
-    result: "Pass",
-    cgpa: "8.45",
-    courses: [{ paperCode: "2412081201", appearingStatus: "*", paperName: "Business Laws", paperType: "Core", credits: "4", grade: "A", gradePoint: "8", creditPoint: "32" }],
-  }],
 };
 
-test("Delhi score-card payload normalizes lookup fields and paper rows", () => {
-  const result = validateResultPayload(validPayload);
-  assert.equal(result.examRollNumber, "24011001");
-  assert.equal(result.enrollmentNumber, "DU-2023-001");
-  assert.equal(result.email, "aarav@example.com");
-  assert.equal(result.semesters[0].courses[0].paperName, "Business Laws");
+function pdfFile(bytes, { name = "score-card.pdf" } = {}) {
+  const buffer = Buffer.from(bytes);
+  return {
+    name,
+    size: buffer.length,
+    arrayBuffer: async () => buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.length),
+  };
+}
+
+test("the lookup fields are normalized the same way for admin and public input", () => {
+  const payload = validateResultPayload(validPayload);
+  assert.equal(payload.examRollNumber, "24011001");
+  assert.equal(payload.email, "aarav@example.com");
+  assert.equal(payload.enrollmentNumber, "DU-2023-001");
+
+  const lookup = publicLookupPayload({ ...validPayload, examRollNumber: "2401 1001" });
+  assert.equal(lookup.examRollNumber, payload.examRollNumber);
+  assert.equal(lookup.email, payload.email);
+  assert.equal(normalizeEmail(" Test@Example.COM "), "test@example.com");
+  assert.equal(normalizeIdentifier(" du 24 / 1 "), "DU24/1");
 });
 
-test("invalid CGPA and unsupported identifiers are rejected", () => {
-  assert.throws(() => validateResultPayload({ ...validPayload, cgpa: "12" }), /CGPA/);
+test("missing lookup fields and malformed values are rejected", () => {
+  assert.throws(() => validateResultPayload({ ...validPayload, college: "" }), /college or department/);
+  assert.throws(() => validateResultPayload({ ...validPayload, email: "not-an-email" }), /valid email/);
+  assert.throws(() => validateResultPayload({ ...validPayload, dateOfBirth: "17-02-2004" }), /date of birth/);
   assert.throws(() => validateResultPayload({ ...validPayload, examRollNumber: "ABC @ 12" }), /unsupported characters/);
 });
 
-test("public lookup is normalized consistently", () => {
-  const lookup = publicLookupPayload(validPayload);
-  assert.equal(lookup.examRollNumber, "24011001");
-  assert.equal(lookup.email, "aarav@example.com");
-  assert.equal(normalizeEmail(" Test@Example.COM "), "test@example.com");
-  assert.equal(normalizeIdentifier(" du 24 / 1 "), "DU24/1");
+test("only real PDF uploads are accepted", async () => {
+  const accepted = await resultPdfFromForm(pdfFile("%PDF-1.7\nscore card body"));
+  assert.equal(accepted.filename, "score-card.pdf");
+  assert.equal(accepted.size, Buffer.from("%PDF-1.7\nscore card body").length);
+
+  await assert.rejects(() => resultPdfFromForm(pdfFile("<html>not a pdf</html>")), /valid PDF/);
+  assert.equal(await resultPdfFromForm(null), null);
+});
+
+test("an uploaded name without an extension still gets one", async () => {
+  const uploaded = await resultPdfFromForm(pdfFile("%PDF-1.4 body", { name: "sem 6 result" }));
+  assert.equal(uploaded.filename, "sem_6_result.pdf");
 });

@@ -2,7 +2,7 @@
   "name": "delhi-university-results",
   "version": "1.0.0",
   "private": true,
-  "description": "Next.js Delhi-style semester result portal backed by MySQL.",
+  "description": "Next.js Delhi-style semester result portal that serves admin-uploaded score-card PDFs from Supabase storage.",
   "type": "module",
   "scripts": {
     "dev": "next dev",
@@ -16,8 +16,6 @@
     "node": ">=20.9"
   },
   "dependencies": {
-    "html2canvas": "^1.4.1",
-    "jspdf": "^4.2.1",
     "mysql2": "^3.14.3",
     "next": "^16.2.12",
     "react": "^19.2.8",
@@ -30,5 +28,6 @@
   "overrides": {
     "postcss": "8.5.25",
     "sharp": "0.35.3"
-  }
+  },
+  "packageManager": "pnpm@11.20.0+sha512.9a6f330a95b66446ea088faf1521405a8a01f07fde7124cc9958dfed52d4bb436737e65b08f85f37b46fcba375092558ac51262b816844b22f63406ed166bfee"
 }

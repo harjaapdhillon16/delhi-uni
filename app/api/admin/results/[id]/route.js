@@ -1,12 +1,7 @@
-import { isAdminRequest, sameOrigin } from "@/lib/auth";
-import {
-  deleteResult,
-  findResultById,
-  isDuplicateError,
-  updateResult,
-  writeAudit,
-} from "@/lib/db";
-import { cleanText, resultFromRow, validateResultPayload } from "@/lib/results";
+import { isAdminRequest, resultDocumentUrl, sameOrigin } from "@/lib/auth";
+import { deleteResult, findResultById, isDuplicateError, updateResult, writeAudit } from "@/lib/db";
+import { cleanText, resultFromRow, resultPdfFromForm, validateResultPayload } from "@/lib/results";
+import { buildObjectKey, deletePdf, uploadPdf } from "@/lib/storage";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -25,17 +20,26 @@ export async function PUT(request, context) {
   if (!sameOrigin(request)) return Response.json({ error: "Cross-origin request rejected." }, { status: 403 });
 
   const id = await resultId(context);
-  if (!Number.isInteger(id) || !(await findResultById(id))) {
-    return Response.json({ error: "Result record not found." }, { status: 404 });
-  }
+  const existing = Number.isInteger(id) ? await findResultById(id) : null;
+  if (!existing) return Response.json({ error: "Result record not found." }, { status: 404 });
 
+  let objectKey = null;
   try {
     const formData = await request.formData();
     const payload = validateResultPayload(JSON.parse(String(formData.get("payload") || "{}")));
-    const row = await updateResult(id, payload);
+    const pdf = await resultPdfFromForm(formData.get("resultPdf"));
+
+    if (pdf) {
+      objectKey = buildObjectKey("delhi-uni-results", payload.examRollNumber);
+      await uploadPdf(objectKey, pdf.buffer);
+    }
+    const row = await updateResult(id, payload, pdf ? { ...pdf, objectKey } : null);
+    // The superseded object is only removed once the row points at the replacement.
+    if (pdf && existing.pdf_object_key) await deletePdf(existing.pdf_object_key).catch(() => {});
     await writeAudit("updated", id, ipAddress(request));
-    return Response.json({ result: resultFromRow(row) });
+    return Response.json({ result: resultFromRow(row, { pdfUrl: resultDocumentUrl(row.id) }) });
   } catch (error) {
+    if (objectKey) await deletePdf(objectKey).catch(() => {});
     if (isDuplicateError(error)) {
       return Response.json(
         { error: "A result already exists for this college, exam roll number, email, and date of birth." },
@@ -54,10 +58,11 @@ export async function DELETE(request, context) {
   if (!sameOrigin(request)) return Response.json({ error: "Cross-origin request rejected." }, { status: 403 });
 
   const id = await resultId(context);
-  if (!Number.isInteger(id) || !(await findResultById(id))) {
-    return Response.json({ error: "Result record not found." }, { status: 404 });
-  }
+  const existing = Number.isInteger(id) ? await findResultById(id) : null;
+  if (!existing) return Response.json({ error: "Result record not found." }, { status: 404 });
+
   await deleteResult(id);
+  if (existing.pdf_object_key) await deletePdf(existing.pdf_object_key).catch(() => {});
   await writeAudit("deleted", id, ipAddress(request));
   return Response.json({ ok: true });
 }

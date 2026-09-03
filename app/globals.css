@@ -25,112 +25,130 @@ button:disabled { cursor: wait; opacity: .65; }
   text-align: center;
 }
 
-.du-page { min-height: 100vh; background: #fff; }
+.du-page {
+  min-width: 1030px;
+  min-height: 100vh;
+  padding: 2px 3px 0;
+  background: #fff url("https://durslt.du.ac.in/AC_INTERNET_Marksheet_NDB/Images/background.png") repeat;
+  font-family: Verdana, Arial, sans-serif;
+}
 .du-header {
-  min-height: 112px;
-  padding: 13px 6vw;
-  display: flex;
-  align-items: center;
-  gap: 30px;
+  width: 100%;
+  height: 105px;
+  display: grid;
+  grid-template-columns: 10% 90%;
   color: #fff;
-  background: var(--du-blue);
+  background: #5b5ede;
 }
-.du-header img { width: 90px; height: 84px; object-fit: contain; }
-.du-header div { flex: 1; text-align: center; }
-.du-header h1 { margin: 0; font-family: Georgia, serif; font-size: clamp(34px, 4vw, 52px); line-height: 1.05; }
-.du-header p { margin: 8px 0 0; font-family: Georgia, serif; font-size: clamp(16px, 2vw, 21px); font-weight: 700; }
+.du-logo-cell { display: grid; place-items: center; }
+.du-header img { width: 101px; height: 101px; display: block; object-fit: contain; }
+.du-heading-cell { padding-right: 10%; display: grid; align-content: center; justify-items: center; }
+.du-header h1 { margin: 0; font-size: 32px; font-weight: 700; line-height: 1.2; }
+.du-header p { margin: 3px 0 0; font-size: 18px; font-weight: 700; line-height: 1.2; }
 .du-nav {
-  min-height: 45px;
-  padding: 7px 6vw;
+  width: 100%;
+  height: 39px;
+  padding-left: 17px;
   display: flex;
   align-items: center;
-  gap: 14px;
-  color: #766b54;
-  background: var(--du-cream);
-  border-bottom: 1px solid #e5d3a5;
-  font-family: Verdana, sans-serif;
-  font-size: 16px;
+  color: #7c6f57;
+  background: #fff1cc;
+  border: 2px solid #5b5ede;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 14px;
+  overflow: hidden;
 }
-.du-nav i { width: 1px; height: 24px; background: #d4c7a6; }
-.du-nav a:hover { text-decoration: underline; }
-.du-nav a:last-child { margin-left: auto; font-size: 12px; }
+.du-nav a { height: 31px; padding: 7px 7px 0; display: block; white-space: nowrap; }
+.du-nav a:hover { color: #f60; }
+.du-nav-divider {
+  width: 13px;
+  height: 31px;
+  flex: 0 0 13px;
+  background: linear-gradient(90deg, #fff7e1 0, #dbd0a9 38%, #8e805d 72%, #fff8df 100%);
+}
+.du-nav-first { border-radius: 8px 0 0 8px; }
+.du-nav-last { border-radius: 0 8px 8px 0; }
 
-.du-content { width: min(1000px, calc(100% - 32px)); min-height: 650px; margin: 0 auto; padding: 25px 0 45px; }
-.du-content h2, .du-content h3 { margin: 0; color: #222; font-family: Georgia, serif; text-align: center; }
-.du-content h2 { font-size: 23px; }
-.du-content h3 { margin-top: 8px; font-size: 19px; }
-.du-blue-line { width: 80%; height: 4px; margin: 15px auto; background: linear-gradient(90deg, transparent, #4866d2 10%, #4866d2 90%, transparent); }
-.du-notice { margin: 12px 0; color: #c00088; font-family: Verdana, sans-serif; font-size: 13px; line-height: 1.6; text-align: center; }
+.du-content { width: 1000px; min-height: 488px; margin: 0 auto; padding: 13px 0 7px; }
+.du-content h2, .du-content h3 { margin: 0; color: maroon; font-family: Verdana, Arial, sans-serif; font-weight: 700; text-align: center; }
+.du-content h2 { font-size: 22px; line-height: 27px; }
+.du-content h3 { font-size: 18px; line-height: 23px; }
+.du-blue-line {
+  width: 630px;
+  height: 3px;
+  margin: 1px auto 3px;
+  background: url("https://durslt.du.ac.in/AC_INTERNET_Marksheet_NDB/Images/BlueLine.JPG") center / 630px 2px no-repeat;
+}
+.du-notice { margin: 0; color: #c09; font-size: 15px; font-weight: 700; line-height: 18px; text-align: center; }
 
-.du-form { width: min(760px, 100%); margin: 28px auto 12px; display: grid; grid-template-columns: 280px minmax(0, 1fr); align-items: center; gap: 13px 24px; }
-.du-form > label { font-family: Verdana, sans-serif; font-size: 13px; }
-.du-form > label b { color: #f30; }
-.du-form > input { width: 100%; min-height: 34px; padding: 6px 9px; border: 1px solid #777; border-radius: 2px; background: #fff; }
-.du-form input:focus { outline: 2px solid rgba(64, 86, 214, .25); border-color: #4056d6; }
-.du-captcha-field { display: grid; grid-template-columns: 118px 64px 1fr; align-items: center; gap: 8px; }
-.du-captcha-field strong { padding: 8px 12px; color: #171c5a; background: repeating-linear-gradient(165deg, #edf0ff, #edf0ff 4px, #d4daf8 5px); border: 1px solid #7e86bd; font-family: Georgia, serif; font-size: 20px; font-style: italic; letter-spacing: 4px; text-decoration: line-through; }
-.du-captcha-field button { padding: 0; color: #2b44ae; background: transparent; border: 0; font-size: 11px; text-decoration: underline; }
-.du-captcha-field input { min-width: 0; height: 34px; padding: 6px 9px; border: 1px solid #777; }
-.du-error { padding: 10px 12px; margin: 0; grid-column: 1 / -1; color: #8e1021; background: #fff0f2; border: 1px solid #eeb1ba; font-size: 13px; text-align: center; }
-.du-form-actions { grid-column: 2; display: flex; gap: 8px; }
-.du-form-actions button, .result-actions button { padding: 7px 14px; color: #fff; background: #4a4bb5; border: 1px solid #34358d; border-radius: 2px; font-size: 13px; }
-.du-form-actions button:last-child, .result-actions button:last-child { color: #222; background: #eee; border-color: #999; }
-.mandatory-note { width: min(760px, 100%); margin: 12px auto; color: #555; font-size: 12px; }
-.portal-notes { margin-top: 35px; padding: 15px 20px; background: #fafafa; border-top: 1px solid #bbb; font-family: Verdana, sans-serif; font-size: 11px; line-height: 1.5; }
-.du-footer { padding: 14px 20px; color: #fff; background: #575ad0; font-family: Verdana, sans-serif; font-size: 11px; text-align: center; }
+.du-form {
+  width: 795px;
+  margin: 27px 0 0;
+  display: grid;
+  grid-template-columns: 385px 410px;
+  align-items: center;
+  row-gap: 3px;
+}
+.du-form > label { font-size: 15px; font-weight: 700; line-height: 22px; }
+.du-form > label b, .mandatory-note b { color: #f30; }
+.du-form > input, .du-form > select, .du-date-fields select {
+  height: 22px;
+  padding: 0 4px;
+  color: maroon;
+  background: #fff;
+  border: 1px solid #1f6367;
+  border-radius: 0;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+.du-form > select { width: 400px; }
+.du-form > input { width: 305px; }
+.du-form input:focus, .du-form select:focus { outline: 1px solid #1f6367; outline-offset: 0; }
+.du-date-fields { width: 350px; display: flex; align-items: center; gap: 7px; }
+.du-date-fields label { font-size: 15px; font-weight: 700; }
+.du-date-fields select { width: 60px; }
+.du-date-fields select:last-child { width: 70px; }
+.du-error { width: 795px; padding: 5px 8px; margin: 3px 0; grid-column: 1 / -1; color: #8e1021; background: #fff0f2; border: 1px solid #eeb1ba; font-size: 12px; text-align: center; }
+.du-form-actions { height: 37px; grid-column: 1 / -1; display: flex; align-items: flex-end; justify-content: center; }
+.du-form-actions button, .result-actions button {
+  height: 30px;
+  padding: 0 7px;
+  color: #fff;
+  background: #1f6367;
+  border-top: 1px solid #3472b4;
+  border-right: 2px solid #022d5c;
+  border-bottom: 2px solid #022d5c;
+  border-left: 1px solid #3472b4;
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+.du-information { margin-top: 24px; font-size: 14px; }
+.du-information p { margin: 0 0 21px; line-height: 17px; }
+.du-information .mandatory-note { margin-bottom: 11px; font-size: 12px; font-weight: 400; }
+.du-information .mandatory-note b { font-size: 15px; }
+.du-information strong { color: #c30; font-size: 15px; }
+.du-information p:not(.mandatory-note) b { color: #06f; font-size: 15px; }
+.du-information p:nth-of-type(3) { width: 820px; margin-bottom: 4px; }
+.du-lower-line { width: 630px; height: 2px; margin-left: 0; background: #168cff; }
+.du-focus-button { width: 28px; height: 14px; padding: 0; margin-top: 4px; background: #fff; border: 1px solid #888; border-radius: 3px; }
+.du-footer { height: 60px; color: #f7f6f3; background: #5b5ede; font-size: 14px; font-weight: 700; text-align: center; }
+.du-footer p { height: 21px; margin: 0; display: grid; place-items: center; }
+.du-footer p:nth-child(2) { height: 19px; color: #06f; background: #fc9; }
+.du-footer div { height: 20px; }
 
 .result-view { margin-top: 24px; }
+.result-summary { padding: 12px 16px; margin-bottom: 14px; background: #f6f7ff; border: 1px solid #ccd2f2; text-align: center; }
+.result-summary strong { display: block; font-family: Georgia, serif; font-size: 19px; }
+.result-summary span { color: #555; font-family: Verdana, sans-serif; font-size: 12px; }
 .result-actions { margin-bottom: 18px; display: flex; justify-content: center; gap: 10px; }
-.score-card-scroll { overflow-x: auto; padding: 4px; }
-.score-card {
-  width: 980px;
-  min-height: 1680px;
-  padding: 28px 34px 40px;
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
-  color: #111;
-  background: #fff;
-  border: 1px solid #555;
-  font-family: "Times New Roman", Times, serif;
-}
-.score-status-band { margin: -28px -34px 20px; padding: 7px; color: #fff; background: #b20e23; font-family: Arial, sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-align: center; }
-.score-letterhead { min-height: 105px; display: grid; grid-template-columns: 105px 1fr; align-items: center; gap: 15px; color: #9b1826; border-bottom: 3px solid #4769ad; }
-.score-letterhead > img { width: 88px; height: 88px; object-fit: contain; }
-.score-letterhead > div:nth-child(2) { text-align: center; }
-.score-letterhead h1 { margin: 0; font-size: 25px; letter-spacing: .04em; }
-.score-letterhead p { margin: 6px 0; font-size: 16px; font-weight: 700; }
-.score-title { padding: 7px 0; margin: 0; color: #9b1826; border-bottom: 3px solid #4769ad; font-size: 20px; text-align: center; }
-.score-independent-note { margin: 8px 0 12px; color: #a00; font-family: Arial, sans-serif; font-size: 10px; font-weight: 700; text-align: center; }
-.score-profile { width: 70%; padding: 12px 5px 15px; display: grid; gap: 7px; }
-.score-detail { display: grid; grid-template-columns: 160px 10px 1fr; color: #8e2630; font-size: 13px; }
-.score-detail strong { font-weight: 600; }
-.score-detail b { text-transform: uppercase; }
-.papers-table, .semester-summary-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 10px; }
-.papers-table th, .papers-table td, .semester-summary-table th, .semester-summary-table td { padding: 7px 4px; border: 1px solid #777; text-align: center; overflow-wrap: anywhere; }
-.papers-table th, .semester-summary-table th { font-size: 11px; }
-.papers-table th:nth-child(1) { width: 45px; }
-.papers-table th:nth-child(2) { width: 105px; }
-.papers-table th:nth-child(3) { width: 75px; }
-.papers-table th:nth-child(4) { width: 335px; }
-.papers-table th:nth-child(5) { width: 63px; }
-.papers-table th:nth-child(6) { width: 42px; }
-.papers-table th:nth-child(n+7) { width: 62px; }
-.papers-table td:nth-child(4) { text-align: left; }
-.semester-summary-table { margin-top: 13px; font-size: 11px; }
-.semester-summary-table th, .semester-summary-table td { padding: 5px; }
-.grand-result { margin: 8px 0 14px; color: #4564aa; font-size: 17px; font-weight: 800; text-align: right; }
-.score-remarks { padding: 8px 12px; margin: 8px 0; border: 1px solid #111; font-size: 12px; }
-.score-notes { margin-top: 18px; font-family: Arial, sans-serif; font-size: 9px; line-height: 1.4; }
-.score-notes p { margin: 4px 0; }
-.declaration-row { margin: 28px 0 20px; display: flex; justify-content: space-between; font-size: 11px; }
-.score-disclaimer { padding-top: 10px; border-top: 2px dotted #666; font-family: Arial, sans-serif; font-size: 10px; line-height: 1.35; }
-.score-disclaimer p { margin: 4px 0; }
-.score-footer { padding-top: 13px; margin-top: 18px; border-top: 1px solid #111; font-size: 10px; font-weight: 800; text-align: center; }
-.score-watermark { position: absolute; left: 50%; z-index: 2; color: rgba(178, 14, 35, .09); font-family: Arial, sans-serif; font-size: 74px; font-weight: 900; white-space: nowrap; transform: translate(-50%, -50%) rotate(-32deg); pointer-events: none; }
-.score-watermark.mark-one { top: 27%; }
-.score-watermark.mark-two { top: 60%; }
-.score-watermark.mark-three { top: 88%; }
+.du-download { padding: 7px 14px; color: #fff; background: #1f6367; border: 1px solid #022d5c; border-radius: 2px; font-size: 13px; }
+.pdf-stage { padding: 14px; background: #e7e9f4; border: 1px solid #c3c8e2; }
+.pdf-stage iframe { width: 100%; height: min(1200px, 128vh); display: block; background: #fff; border: 1px solid #a9afd0; }
+.pdf-fallback { margin: 12px 0 0; color: #555; font-family: Verdana, sans-serif; font-size: 12px; text-align: center; }
+.pdf-fallback a { color: #2b44ae; text-decoration: underline; }
+.fieldset-note { margin: 0 0 14px; color: #6d7487; font-size: 12px; line-height: 1.55; }
 
 .primary-button, .secondary-button, .danger-button { min-height: 42px; padding: 10px 18px; border-radius: 7px; font-weight: 700; }
 .primary-button { color: #fff; background: var(--admin-accent); border: 1px solid var(--admin-accent); }
@@ -202,32 +220,20 @@ button:disabled { cursor: wait; opacity: .65; }
 .result-editor legend { padding: 0 8px; color: #26304c; font-size: 14px; font-weight: 800; }
 .result-editor legend b { margin-right: 7px; color: #4156ce; }
 .editor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.editor-grid label, .semester-editor label { min-width: 0; }
-.editor-grid label > span, .semester-editor label > span, .photo-input > span { margin-bottom: 6px; display: block; color: #626a7e; font-size: 11px; font-weight: 700; }
+.editor-grid label > span, .photo-input > span { margin-bottom: 6px; display: block; color: #626a7e; font-size: 11px; font-weight: 700; }
 .full-field { grid-column: 1 / -1; }
-.editor-grid input, .editor-grid select, .semester-editor input { width: 100%; height: 40px; padding: 8px 10px; border: 1px solid #cbd0dc; border-radius: 5px; background: #fff; }
+.editor-grid input, .editor-grid select { width: 100%; height: 40px; padding: 8px 10px; border: 1px solid #cbd0dc; border-radius: 5px; background: #fff; }
 .photo-input input { padding: 7px; }
 .photo-input small { margin-top: 5px; display: block; color: #777f91; }
 .check-field { display: flex; align-items: center; gap: 8px; color: #666e80; font-size: 12px; }
 .check-field input { width: auto; height: auto; }
-.fieldset-title, .paper-heading { display: flex; align-items: center; justify-content: space-between; }
-.fieldset-title button, .paper-heading button, .no-semesters button { padding: 7px 10px; color: #3549bb; background: #f2f4ff; border: 1px solid #bdc5f3; border-radius: 5px; font-size: 11px; font-weight: 700; }
-.no-semesters { padding: 28px; color: #737b8d; background: #fafbfc; border: 1px dashed #cbd0dc; border-radius: 6px; text-align: center; }
-.semester-editor { margin-top: 15px; border: 1px solid #d8dce7; border-radius: 7px; overflow: hidden; }
-.semester-editor > header { padding: 12px; display: flex; align-items: end; gap: 10px; background: #f4f6fb; }
-.semester-editor-meta { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.semester-editor > header > button { width: 38px; height: 40px; color: #a22334; background: #fff; border: 1px solid #e0bbc1; border-radius: 5px; }
-.paper-heading { padding: 12px; border-top: 1px solid #dfe2eb; border-bottom: 1px solid #e7e9ef; }
-.paper-row { padding: 8px 10px; display: grid; grid-template-columns: 28px 1fr .8fr 2fr .85fr .6fr .55fr .7fr .75fr 32px; gap: 6px; align-items: center; border-bottom: 1px solid #edf0f4; }
-.paper-row input { min-width: 0; height: 34px; padding: 6px; font-size: 11px; }
-.paper-row > button { height: 32px; color: #9e2030; background: #fff2f3; border: 1px solid #efc3c9; border-radius: 4px; }
 .result-editor form > footer { display: flex; justify-content: flex-end; gap: 10px; }
 .editor-error { margin: 14px 0; }
 .confirm-overlay section { width: min(430px, calc(100% - 32px)); padding: 30px; background: #fff; border-radius: 12px; text-align: center; }
 .confirm-overlay section div { margin-top: 20px; display: flex; justify-content: center; gap: 9px; }
 
 @media (max-width: 800px) {
-  .du-header { min-height: 92px; padding: 14px; gap: 12px; }
+  .du-header { height: 92px; padding: 0 14px; gap: 12px; }
   .du-header img { width: 62px; height: 62px; }
   .du-header h1 { font-size: 25px; }
   .du-header p { font-size: 13px; }
@@ -249,14 +255,11 @@ button:disabled { cursor: wait; opacity: .65; }
   .admin-records header input { width: 100%; }
   .editor-grid { grid-template-columns: 1fr; }
   .full-field { grid-column: auto; }
-  .semester-editor-meta { grid-template-columns: 1fr; }
-  .paper-row { grid-template-columns: 24px 1fr 32px; }
-  .paper-row input { grid-column: 2; }
-  .paper-row > button { grid-column: 3; grid-row: 1; }
+  .pdf-stage { padding: 8px; }
+  .pdf-stage iframe { height: min(900px, 118vh); }
 }
 
 @media print {
   .global-status-label, .du-header, .du-nav, .du-content > h2, .du-content > h3, .du-blue-line, .du-notice, .result-actions, .portal-notes, .du-footer { display: none !important; }
-  .du-content, .result-view, .score-card-scroll { width: auto; padding: 0; margin: 0; overflow: visible; }
-  .score-card { border: 0; transform-origin: top left; }
+  .du-content, .result-view, .pdf-stage { width: auto; padding: 0; margin: 0; border: 0; background: #fff; }
 }
